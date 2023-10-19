@@ -63,9 +63,9 @@ export class DashboardComponent implements OnInit {
       '<option value="active">Active</option>' +
       '<option value="inactive">Inactive</option>' +
       '</select>' +
-        '<input id="lastseen" class="swal2-input" placeholder="Lastseen">' +
-        '<input id="temp" class="swal2-input" placeholder="temp.">' +
-        '<input id="humidity" class="swal2-input" placeholder="Humidity">',
+        '<input id="lastseen" class="swal2-input" placeholder="Lastseen in minutes">' +
+        '<input id="temp" class="swal2-input" placeholder="temperature in Celsius">' +
+        '<input id="humidity" class="swal2-input" placeholder="Humidity%">',
 
        
       showCancelButton: true,

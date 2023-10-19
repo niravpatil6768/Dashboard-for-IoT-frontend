@@ -54,20 +54,28 @@
     </div>
     <div class="col">
       <div class="row">
-        <div *ngIf="stations.length === 0">No stations found.</div>
+        <div *ngIf="stations.length === 0">
+            <ngx-ui-loader fgsType="ball-spin-clockwise-fade-rotating" fgsColor="#2196f3"></ngx-ui-loader>    
+            No stations found.</div>
         <div class="col-md-4" *ngFor="let station of stations; let i = index">
           <div class="card shadow p-3 mb-5 bg-white rounded" *ngIf="!listView; else listTemplate">
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
               <!-- Your station image -->
             </div>
-            <div class="card-body">
-              <h5 class="card-title">Station: {{ station['name']}}</h5>
-              <p class="card-text">Status: {{station['status']}} </p>
-              <p class="card-text">Last update timestamp: {{station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss'}} </p>
+            <div class='card'>
+            
+            <div class='card__top'> 
+              <h5 class="card-text top">Station: {{ station['name']}}</h5>
+              <p class="card-text top">Status: {{station['status']}} </p>
+              </div>
+              <div class='card__bottom'>
+              <p class="card-text bottom">Last update timestamp: {{station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss'}} </p>
               <p class="card-text">Last Seen: {{station['lastseen']}} minutes ago </p>
               <p class="card-text">Temperature: {{station['temp']}} degree Celsius</p>
               <p class="card-text">Humidity: {{station['humidity']}}%</p>
+              </div>
             </div>
+            
           </div>
           <ng-template #listTemplate>
             <ul class="list-group list-group-flush">
