@@ -96,7 +96,7 @@ export class DashboardComponent implements OnInit {
             Swal.showValidationMessage('Please enter a valid lastseen value.');
             return false;
           } 
-          if (isNaN(humidity1)) {
+          if (isNaN(humidity1) || humidity1 > 100) {
             Swal.showValidationMessage('Please enter a valid humidity value.');
             return false;
           } 
@@ -122,7 +122,9 @@ export class DashboardComponent implements OnInit {
       this.webService.addstation(stationData).subscribe(
         (response) => {
           
-          console.log('Station added successfully', response);  
+          console.log('Station added successfully', response); 
+          
+          this.stations.push(stationData);
         },
         (error) => {  
           console.error('Error adding station', error);

@@ -1,60 +1,86 @@
-<div class="py-5 container">
-    <div class="">
-      <div class="container11">
-        <div class="dropdown">
-          <select [(ngModel)]="selectedFilter" (change)="filterStations()">
-            <option value="all">All</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
-          <button id="add-button" type="button" class="btn btn-primary" (click)="addStation()">
-            + Add
-          </button>
-        </div>
-        <button
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>     
+<body>
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+	<a href="/" class="navbar-brand"><i class="fa fa-shield">&nbsp;</i>station<b>Controller</b></a>  		
+	<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<!-- Collection of nav links, forms, and other content for toggling -->
+	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">		
+		
+		<div class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="dropdown">
+                  <select [(ngModel)]="selectedFilter" (change)="filterStations()" class="custom-select">
+                    <option value="all">All</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+              </li>
+              <li class="nav-item addbutton">
+                <button class="btn btn-primary " (click)="addStation()">+ Add</button>
+              </li>
+             
+    </div>
+	</div>
+</nav>
+</body>
+</html>
+  
+  <div class="py-5 container">
+    <div><button
          
-          type="button"
-          class="btn btn-secondary"
-          (click)="toggleView()"
-        >
-          {{ listView ? 'List View' : 'Card View' }}
-        </button>
-      </div>
-  
-      <div class="">
-        <div class="row">
-          <div *ngIf="stations.length === 0">No stations found.</div>
-  
-          <div class="col-md-4" *ngFor="let station of stations; let i = index">
-                <div
-              class="card shadow p-3 mb-5 bg-white rounded"
-              *ngIf="!listView; else listTemplate"
-            >
-              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <!-- Your station image -->
-              </div>
-  
-              <div class=" card-body">
-                <h5 class="card-title">{{station['name']}}</h5>
-                <p class="card-text">Status: {{station['status']}}</p>
-                <p class="card-text">Last Seen: {{station['lastseen']}}</p>
-                <p class="card-text">Temp: Rs. {{station['temp']}}</p>
-                <p class="card-text">Humidity: {{station['humidity']}}</p>
-              </div>
-            
+        type="button"
+        class="btn btn-secondary view"
+        (click)="toggleView()"
+      >
+        {{ listView ? 'List View' : 'Card View' }}
+      </button>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div *ngIf="stations.length === 0">No stations found.</div>
+        <div class="col-md-4" *ngFor="let station of stations; let i = index">
+          <div class="card shadow p-3 mb-5 bg-white rounded" *ngIf="!listView; else listTemplate">
+            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+              <!-- Your station image -->
             </div>
-            <ng-template #listTemplate>
-              <ul class=" list-group list-group-horizontal-xxl">
-                <h5 class="list-group-item">{{ station['name'] }}</h5>
-                <p class="list-group-item">Status: {{ station['status'] }}</p>
-                <p class="list-group-item">Last Seen: {{ station['lastseen'] }}</p>
-                <p class="list-group-item">Temp: Rs. {{ station['temp'] }}</p>
-                <p class="list-group-item">Humidity: {{ station['humidity'] }}</p>
-              </ul>
-            </ng-template>
+            <div class="card-body">
+              <h5 class="card-title">Station: {{ station['name']}}</h5>
+              <p class="card-text">Status: {{station['status']}} </p>
+              <p class="card-text">Last update timestamp: {{station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss'}} </p>
+              <p class="card-text">Last Seen: {{station['lastseen']}} minutes ago </p>
+              <p class="card-text">Temperature: {{station['temp']}} degree Celsius</p>
+              <p class="card-text">Humidity: {{station['humidity']}}%</p>
+            </div>
           </div>
+          <ng-template #listTemplate>
+            <ul class="list-group list-group-flush">
+              <h5 class="list-group-item">Station: {{ station['name'] }}</h5>
+              <p class="list-group-item">Status: {{ station['status'] }}</p>
+              <p class="list-group-item">Last update timestamp: {{station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss'}} </p>
+              <p class="list-group-item">Last Seen: {{ station['lastseen'] }} minutes ago</p>
+              <p class="list-group-item">Temp: {{ station['temp'] }} degree Celsius</p>
+              <p class="list-group-item">Humidity: {{ station['humidity'] }}%</p>
+            </ul>
+          </ng-template>
         </div>
-     </div>
+      </div>
     </div>
   </div>
   
