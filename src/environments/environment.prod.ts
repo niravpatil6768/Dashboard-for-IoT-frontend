@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API: 'https://dashboard-iot-backend.onrender.com'
 };
