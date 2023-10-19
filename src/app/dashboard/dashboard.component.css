@@ -1,0 +1,173 @@
+.card {
+    max-width: 800px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container{
+    align-content: center;
+  }
+  
+  .btn {
+    margin: 5px;
+    padding: 10px 20px;
+  }
+  
+  .container11 {
+    text-align: right;
+  }
+  
+  .container2{
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  #add-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: right;
+    background-color: #2980b9;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  #add-button:hover {
+    background-color: #1f639b;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  #searchInput {
+    font-size: 1rem;
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    box-sizing: border-box;
+  }
+  
+  #searchButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #2980b9;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  #searchButton:hover {
+    background-color: #1f639b;
+  }
+  
+  
+  .btn-info {
+    background-color: #3a4039;
+    color: white;
+  }
+  
+  .btn {
+    outline-color: red;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .container1 {
+      text-align: center;
+    }
+  
+    #add-button {
+      margin-top: 15px;
+      margin-right: 0;
+      width: 100%;
+    }
+  
+    button {
+      margin-bottom: 10px;
+    }
+  
+    .search-container {
+      flex-direction: column;
+    }
+  
+    #searchInput {
+      margin-right: 0;
+      margin-bottom: 10px;
+      max-width: none;
+    }
+  }
+
+  .img {
+    max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+    max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+    display: block; /* Remove any extra space below the image */
+    margin: auto; /* Center the image horizontally (optional) */
+    margin-bottom: 5%;
+
+    
+  }
+
+  .swal2-select{
+    width: 1200px;
+    size: 20px;
+    
+  }
+
+  .custom-dropdown {
+    background-color: #f8f9fa; /* Background color */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px 10px; /* Spacing inside the dropdown */
+    height: 80px
+}
+
+/* Style for the dropdown label */
+.dropdown-label {
+    font-weight: bold; /* Make the label bold */
+    height: 2px;
+}
+
+.drop{
+  margin-left: -140px;
+  width: 500px;
+}
+
+/* Styles for responsive design */
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+ 
+  
+  .card {
+    margin: 10px;
+  }
+  
+  .list-view {
+    border: 1px solid #ccc;
+    
+   
+   
+    flex-direction: row;
+    
+   
+  }
+  
+  
+  
+  

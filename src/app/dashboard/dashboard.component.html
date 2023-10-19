@@ -1,0 +1,60 @@
+<div class="py-5 container">
+    <div class="">
+      <div class="container11">
+        <div class="dropdown">
+          <select [(ngModel)]="selectedFilter" (change)="filterStations()">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <button id="add-button" type="button" class="btn btn-primary" (click)="addStation()">
+            + Add
+          </button>
+        </div>
+        <button
+         
+          type="button"
+          class="btn btn-secondary"
+          (click)="toggleView()"
+        >
+          {{ listView ? 'List View' : 'Card View' }}
+        </button>
+      </div>
+  
+      <div class="">
+        <div class="row">
+          <div *ngIf="stations.length === 0">No stations found.</div>
+  
+          <div class="col-md-4" *ngFor="let station of stations; let i = index">
+                <div
+              class="card shadow p-3 mb-5 bg-white rounded"
+              *ngIf="!listView; else listTemplate"
+            >
+              <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                <!-- Your station image -->
+              </div>
+  
+              <div class=" card-body">
+                <h5 class="card-title">{{station['name']}}</h5>
+                <p class="card-text">Status: {{station['status']}}</p>
+                <p class="card-text">Last Seen: {{station['lastseen']}}</p>
+                <p class="card-text">Temp: Rs. {{station['temp']}}</p>
+                <p class="card-text">Humidity: {{station['humidity']}}</p>
+              </div>
+            
+            </div>
+            <ng-template #listTemplate>
+              <ul class=" list-group list-group-horizontal-xxl">
+                <h5 class="list-group-item">{{ station['name'] }}</h5>
+                <p class="list-group-item">Status: {{ station['status'] }}</p>
+                <p class="list-group-item">Last Seen: {{ station['lastseen'] }}</p>
+                <p class="list-group-item">Temp: Rs. {{ station['temp'] }}</p>
+                <p class="list-group-item">Humidity: {{ station['humidity'] }}</p>
+              </ul>
+            </ng-template>
+          </div>
+        </div>
+     </div>
+    </div>
+  </div>
+  
