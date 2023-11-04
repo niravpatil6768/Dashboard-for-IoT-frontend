@@ -1,26 +1,23 @@
-
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 
+<!--vertical nav-->
 <div class="vertical-nav bg-white" [ngClass]="{'active': isSidebarActive}" id="sidebar">
     <div class="py-4 px-3 mb-4 bg-light">
         <div class="media d-flex">
             <a href="/dashboard"><img src="assets/logo.png" alt="..." width="150" height="100" class="mb-1 mt-3" /></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-           <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <button class="btn btn-light  custom-close-btn" (click)="closeSidebar()">
                 <img src="assets/cross.png" alt="..." class="small-cross" />
             </button>
         </div>
     </div>
-
     <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
         Dashboard
     </p>
-
     <ul class="nav flex-column bg-white">
         <li class="nav-item">
             <a href="/dashboard" class="nav-link bg-light">
@@ -28,29 +25,32 @@
                 Home
             </a>
         </li>
-
-
+        <li class="nav-link bg-light" [class.active]="viewMode === 'card'" (click)="setViewMode('card')">
+            <img src="assets/card.png" alt="..." width="42" class="px-2 py-2" />
+            Card View
+        </li>
+        <li class="nav-link bg-light" [class.active]="viewMode === 'table'" (click)="setViewMode('table')">
+            <img src="assets/list.png" alt="..." width="42" class="px-2 py-2" />
+            Table View
+        </li>
         <li class="nav-item">
             <a href="#" class="nav-link bg-light">
                 <img src="assets/solid_users.png" alt="..." width="42" class="px-2 py-2" />
                 View All Users
             </a>
         </li>
-
         <li class="nav-item">
             <div class="nav-link bg-light" (click)="addStation()">
                 <img src="assets/user.png" alt="..." width="42" class="px-2 py-2" />
                 +Add Station
             </div>
         </li>
-
         <li class="nav-item">
             <a href="#" class="nav-link bg-light">
                 <img src="assets/settings.png" alt="..." width="42" class="px-2 py-2" />
                 Settings
             </a>
         </li>
-
         <li class="nav-item" *ngIf="isLoggedIn()">
             <a href="#" class="nav-link bg-light" (click)="logout()" [routerLink]="['../']">
                 <img src="assets/Logout.png" alt="..." width="38" class="px-2 py-2" />
@@ -64,8 +64,7 @@
 <!-- Horizontal Navigation bar -->
 <nav class="nav-container " style="padding-top: 0%; margin-top: -20px; margin-bottom: 20px;">
     <div class="horizontal_nav bg-light fixed-top" id="horizontalNav">
-       
-        <div class="">
+        <div class="" style="margin-top: 1rem; margin-left: -1rem;">
             <ul class="nav mx-4 d-flex justify-content-between d-md-none d-block">
                 <li class="nav-item">
                     <button id="sidebarCollapse" type="button" (click)="toggleSidebar()"
@@ -75,12 +74,11 @@
                 </li>
             </ul>
         </div>
-
-                <!-- Center: Search Input and Button (Responsive Grid) -->
-                <div class="container">
-                    <div class="row">
+        <!-- Center: Search Input and Button (Responsive Grid) -->
+        <div class="container">
+            <div class="row">
                 <div class="col-4 col-md-7">
-                    <div style="padding-top: 12px;"  class="input-group my-1 mt-0 align-items-center">
+                    <div style="padding-top: 12px;" class="input-group my-1 mt-0 align-items-center">
                         <input type="text" id="searchInput" class="form-control" placeholder="Search any Station"
                             [(ngModel)]="searchQuery" (ngModelChange)="onSearch()" #searchBox />
                         <div class="input-group-append">
@@ -94,123 +92,127 @@
                         X
                     </button>
                 </div>
-
-                <!-- Right Side: User Filter Dropdown and Logout -->
                 <div class="col-3 col-md-2 text-right">
-                    <div style="padding-top: 10px;"  class="dropdown">
-                        <select [(ngModel)]="selectedFilter" (change)="filterStations()" (change)="filter()" class="custom-select">
+                    <div style="padding-top: 10px;  margin-left: -10rem;" class="dropdown">
+                        <select [(ngModel)]="selectedFilter" (change)="filterStations()" (change)="filter()"
+                            class="custom-select">
                             <option value="all">All</option>
                             <option value="active">Active</option>
                             <option value="inactive">Inactive</option>
                         </select>
                     </div>
-                    </div>
-                    
+                </div>
             </div>
         </div>
     </div>
 </nav>
 
 <!DOCTYPE html>
-  <html>
-  <body>
+<html>
+<body>
     <div class="page-content px-5 pt-5" id="content">
-      <div class="container1">
-        <div class="row">
-         <div class="col-6" style="margin-left: -1rem; margin-right: 1rem; width: 20rem;">
-            <div class=" card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
-              <div class="card-body bg-info">
-                <h5 class="list-group-item">{{ allStation1.length }}</h5>
-                <h5 class="list-group-item" >Total Stations</h5> 
-              </div>
-            </div>
-
-            <div class="" *ngIf="selectedFilter === 'active' || selectedFilter === 'inactive'" class="card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
-                <div class="card-body bg-info">
-                  <h5 class="list-group-item">{{ stations.length }}</h5>
-                  <h5 *ngIf="selectedFilter === 'active'" class="list-group-item" >Active Stations</h5> 
-                  <h5 *ngIf="selectedFilter === 'inactive'" class="list-group-item" >inActive Stations</h5> 
-                </div>
-              </div>
-          </div>    
-          <!-- Display All Station Cards in the First Row -->
-          <div class="col-md-9">
-            <div *ngIf="stations.length === 0" style="margin-top: 5rem;">No stations found.</div>
+        <div class="container1">
             <div class="row">
-              
-                <div *ngFor="let station of stations;" class="card card1 p-4 text-dark text-center col-md-5" style="margin-top: 40px; border-color: white; margin-right: 1.5rem; box-shadow: inset;">
-                  <div class="card-body">
-                    <div class="text-left" style="padding-left:0%; margin-left: -80px; margin-top: -40px; ">
-                        <p class="lastupdate-box text" style="padding-left:0%">Last Update: {{ station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss' }}</p>
-                      </div>
-
-                      <h5 style="padding-top: 10px;"class="list-group-item">Station: {{ station['name'] }}</h5> 
-                    <div style="padding-top: 50px;">  
-                    <div class="row">
-                    
-                    
-                      <div class="col-6">
-                        <div class="status-box box" style="border-radius: 0.5rem;">
-                          
-                          <p class="text-white">{{ station['status'] }}</p>
-                          <h6 class="text-white" style="margin-top: -10px;">Status</h6>
+                <div *ngIf="viewMode === 'card'" class="col"
+                    style="margin-left: -1rem; margin-right: 1rem; width: 15rem;">
+                    <div class=" card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
+                        <div class="card-body bg-info">
+                            <h5 class="list-group-item">{{ allStation1.length }}</h5>
+                            <h5 class="list-group-item">Total Stations</h5>
                         </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="humidity-box box" style="border-radius: 0.5rem;">
-                         
-                          <p class="text-white">{{ station['humidity'] }}%</p>
-                          <h6 class="text-white" style="margin-top: -10px;">Humidity</h6>
-                        </div>
-                      </div>
                     </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="temp-box box" style="border-radius: 0.5rem;">
-                          
-                          <p class="text-white">{{ station['temp'] }}°C</p>
-                          <h6 class="text-white" style="margin-top: -10px;">Temperature</h6>
+                    <div class="" *ngIf="selectedFilter === 'active' || selectedFilter === 'inactive'"
+                        class="card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
+                        <div class="card-body bg-info">
+                            <h5 class="list-group-item">{{ stations.length }}</h5>
+                            <h5 *ngIf="selectedFilter === 'active'" class="list-group-item">Active Stations</h5>
+                            <h5 *ngIf="selectedFilter === 'inactive'" class="list-group-item">inActive Stations</h5>
                         </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="lastseen-box box" style="border-radius: 0.5rem;">
-                          
-                          <p class="text-white">{{ station['lastseen'] }} min ago </p>
-                          <h6 class="text-white" style="margin-top: -10px;">Last Seen</h6>
+                    </div>
+                </div>
+                <!-- Display All Station Cards in the First Row -->
+                <div class="col-md-9">
+                    <div *ngIf="stations.length === 0" style="margin-top: 5rem;">No stations found.</div>
+                    <div *ngIf="viewMode === 'card'; else tableView">
+                        <div class="row">
+                            <div *ngFor="let station of stations;" class="card card1 p-4 text-dark text-center col-md-5"
+                                style="margin-top: 40px; border-color: white; margin-right: 1.5rem; box-shadow: inset;">
+                                <div class="card-body">
+                                    <div class="text-left"
+                                        style="padding-left:0%; margin-left: -80px; margin-top: -40px; ">
+                                        <p class="lastupdate-box text" style="padding-left:0%">Last Update: {{
+                                            station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+                                    </div>
+                                    <h5 style="padding-top: 10px;" class="list-group-item">Station: {{ station['name']
+                                        }}</h5>
+                                    <div style="padding-top: 50px;">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="status-box box" style="border-radius: 0.5rem;">
+                                                    <p class="text-white">{{ station['status'] }}</p>
+                                                    <h6 class="text-white" style="margin-top: -10px;">Status</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="humidity-box box" style="border-radius: 0.5rem;">
+                                                    <p class="text-white">{{ station['humidity'] }}%</p>
+                                                    <h6 class="text-white" style="margin-top: -10px;">Humidity</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="temp-box box" style="border-radius: 0.5rem;">
+                                                    <p class="text-white">{{ station['temp'] }}°C</p>
+                                                    <h6 class="text-white" style="margin-top: -10px;">Temperature</h6>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="lastseen-box box" style="border-radius: 0.5rem;">
+                                                    <p class="text-white">{{ station['lastseen'] }} min ago </p>
+                                                    <h6 class="text-white" style="margin-top: -10px;">Last Seen</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-auto">
+                                        <button class="btn btn-primary">View</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    
-                   </div> 
-                  </div>
-                  <div class="mt-auto">
-                    <button class="btn btn-primary">View</button>
-                  </div>
+                    </div>
+                    <ng-template #tableView>
+                        <!-- Render table view -->
+                        <table style="width: 57rem; margin-top: 3rem;" class="table table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Station Name</th>
+                                    <th>Status</th>
+                                    <th>Humidity</th>
+                                    <th>Temperature</th>
+                                    <th>Last Seen</th>
+                                    <th>Last Update</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let station of stations">
+                                    <td>{{ station.name }}</td>
+                                    <td>{{ station.status }}</td>
+                                    <td>{{ station.humidity }}%</td>
+                                    <td>{{ station.temp }}°C</td>
+                                    <td>{{ station.lastseen }} min ago</td>
+                                    <td>{{ station['createdAt'] | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                                    <td><button class="btn btn-primary">View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ng-template>
                 </div>
-              </div>
             </div>
-          </div>
-          <!-- Total Number of Stations Box on the Right Side -->
-         <!-- <div class="col-md-3">
-            <div class="card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
-              <div class="card-body bg-info">
-                <h5 class="list-group-item">{{ allStation1.length }}</h5>
-                <h5 class="list-group-item" >Total Stations</h5> 
-              </div>
-            </div>
-
-            <div  *ngIf="selectedFilter === 'active' || selectedFilter === 'inactive'" class="card bg-light p-1 text-dark text-center" style="margin-top: 40px;">
-                <div class="card-body bg-info">
-                  <h5 class="list-group-item">{{ stations.length }}</h5>
-                  <h5 *ngIf="selectedFilter === 'active'" class="list-group-item" >Active Stations</h5> 
-                  <h5 *ngIf="selectedFilter === 'inactive'" class="list-group-item" >inActive Stations</h5> 
-                </div>
-              </div>
-          </div>-->
         </div>
-      </div>
     </div>
-  </body>
-  </html>
-  
+</body>
 
-  
+</html>
