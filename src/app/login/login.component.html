@@ -1,0 +1,52 @@
+
+
+  <div class="container">
+    <div class="row">
+      <!-- Left Side Part and Form -->
+      <div class="col-md-6">
+        <div class="login-container my-4 p-4">
+          <h1 class="title text-center">Login Page</h1>
+          <form [formGroup]="form" (ngSubmit)="signIn()">
+            <div *ngIf="errMessage" class="error-message">
+              {{ errMessage }}
+            </div>
+            <div class="form-group mb-3">
+              <label>Email address:</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="Enter your email" required [ngClass]="{ 'is-invalid': submitted && formControls['email'].errors }">
+              <div *ngIf="submitted && formControls['email'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['email'].errors['required']">Email is required</div>
+                <div *ngIf="formControls['email'].errors['email']">Email is invalid</div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Password:</label>
+              <input type="password" placeholder="Enter your password" [ngClass]="{ 'is-invalid': submitted && formControls['pass'].errors }" formControlName="pass" id="pass" class="form-control" [(ngModel)]="password" name="pass">
+              <div *ngIf="submitted && formControls['pass'].errors" class="invalid-feedback">
+                <div *ngIf="formControls['pass'].errors['required']">Password is required</div>
+                <div *ngIf="formControls['pass'].errors['minlength']">Password must be at least 8 characters</div>
+                <div *ngIf="formControls['pass'].errors['maxlength']">Password must not exceed 20 characters</div>
+              </div>
+            </div>
+            <div class="text-center form-group btn-group">
+              <button type="submit" class="btn btn-success">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <ngx-ui-loader fgsType="ball-spin-clockwise-fade-rotating" fgsColor="#2196f3"></ngx-ui-loader>
+              <button type="button" class="btn btn-secondary" (click)="onReset()">Reset</button>
+            </div>
+          </form>
+          <div class="loginLink">
+            <h6>Don’t have an account?</h6>
+            <h6 class="p-1 link"><a routerLink="/signup"> Sign up here</a></h6>
+          </div>
+        </div>
+      </div>
+      <!-- Right Side Part with Image -->
+      <div class="col-md-6">
+        <div class="login-page-child">
+          <img class="img-fluid" alt="image" src="assets/petrolstation.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+

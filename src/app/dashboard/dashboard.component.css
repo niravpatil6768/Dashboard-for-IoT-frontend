@@ -1,267 +1,269 @@
-/* Navbar Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+.vertical-nav{
+  padding-left: 20px;
+  min-width: 17rem;
+  max-width: 17rem;
+  height: 100vh;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+  z-index: 2;
+  /* margin-top: 5px; */
+  overflow-y: auto;
+} 
 
-  
-  /* Dropdown Select Styles */
-  .custom-select {
-    width: 100px; /* Adjust the width as needed */
-    height: 20px;
-    margin-bottom: -35px;
-    margin-right: 840px
+.horizontal_nav{
+  margin-left: 17rem;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 3px 3px 10px rgba(231, 44, 44, 0.1);
+  margin-top: 0px;
+}
+
+#sidebar.active{
+  margin-left: -17rem;
+}
+
+#content{
+  z-index: 0;
+}
+#content.active{
+  width: 100%;
+  margin-left: 0;
+}
+
+.text-gray{
+  color: #aaa;
+}
+
+.nav-link{
+  text-transform: capitalize;
+  color: #414141;
+  font-weight: 500;
+}
+
+.nav-link:hover{
+  color: #719b20;
+}
+
+.close-btn{
+  opacity: 0;
+}
+@media screen and (max-width: 767px) {
+  .vertical-nav{
+    padding-left: 20px;
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(135, 65, 65, 0.1);
+    transition: all 0.4s;
+    z-index: 2;
   }
 
-  
-  
- 
+  #sidebar{
+    margin-left: -17rem;
+  }
 
-.cardd {
-    max-width: 800px;
-    margin: auto;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  #sidebar.active{
+    margin-left: 0;
   }
-  
-  .container{
-    align-content: center;
-  }
-  
-  .btn {
-    margin: 5px;
-    padding: 10px 20px;
-  }
-  
-  .container11 {
-    text-align: right;
-  }
-  
-  .container2{
+
+  #content{
     width: 100%;
-    max-width: 100%;
+    margin: 0;
+    z-index: 0;
   }
-  
-  #add-button {
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: right;
-    background-color: #2980b9;
-    transition: background-color 0.3s ease-in-out;
+
+  #content.active{
+    margin-left: 0;
+    width: 100%;
   }
-  
-  #add-button:hover {
-    background-color: #1f639b;
+
+  .horizontal_nav{
+    margin: 0;
+    z-index: 1;
   }
-  
-  button {
-    margin-top: 20px;
+  .close-btn{
+    opacity: 100%;
   }
-  
-  .search-container {
-    display: flex;
-    align-items: center;
+}
+
+.body {
+  background-color: rgb(255, 255, 255);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.vertical-nav {
+  padding-left: 20px;
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.horizontal_nav {
+  margin-left: 17rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+}
+
+#sidebar.active {
+  margin-left: -17rem;
+}
+
+#content.active {
+  width: 100%;
+  margin-left: 0;
+}
+
+.separator {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dashed #000000;
+}
+
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+.text-gray {
+  color: #aaa;
+}
+
+.nav-link {
+  text-transform: capitalize;
+  color: #414141;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: #719b20;
+}
+
+.text-primary {
+  color: rgb(180, 70, 70);
+}
+
+.btn-primary {
+  font-weight: 400;
+}
+
+.card-deck {
+  display: flex;
+  justify-content: center;
+}
+
+.card1 {
+  background-color: #c3e1ff96;
+  min-width: 20rem;
+  max-width: 20rem;
+  max-height: 30rem;
+  min-height: 20rem;
+  box-shadow: #d70f0f;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+
+  #content.active {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .horizontal_nav {
+    margin: 0;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+
+  .horizontal_nav {
+    margin: 0;
+  }
+
+  .card-deck {
+    flex-direction: column;
     justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  #searchInput {
-    font-size: 1rem;
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    max-width: 1000px;
-    box-sizing: border-box;
-  }
-  
-  #searchButton {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #2980b9;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  #searchButton:hover {
-    background-color: #1f639b;
-  }
-  
-  
-  .btn-info {
-    background-color: #3a4039;
-    color: white;
-  }
-  
-  .btn {
-    outline-color: red;
-  }
-  
-  @media screen and (max-width: 767px) {
-    .container1 {
-      text-align: center;
-    }
-  
-    #add-button {
-      margin-top: 15px;
-      margin-right: 0;
-      width: 100%;
-    }
-  
-    button {
-      margin-bottom: 10px;
-    }
-  
-    .search-container {
-      flex-direction: column;
-    }
-  
-    #searchInput {
-      margin-right: 0;
-      margin-bottom: 10px;
-      max-width: none;
-    }
-  }
-
- 
-
-  .swal2-select{
-    width: 1200px;
-    size: 20px;
-    
-  }
-
-  .custom-dropdown {
-    background-color: #f8f9fa; /* Background color */
-    border: 1px solid #ced4da; /* Border color */
-    border-radius: 4px; /* Rounded corners */
-    padding: 5px 10px; /* Spacing inside the dropdown */
-    height: 80px
-}
-
-/* Style for the dropdown label */
-.dropdown-label {
-    font-weight: bold; /* Make the label bold */
-    height: 2px;
-}
-
-.drop{
-  margin-left: -140px;
-  width: 500px;
-}
-
-/* Styles for responsive design */
-.container1 {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
   }
-  
- 
-  
-  .card {
-    margin: 10px;
-  }
-  
-  .list-view {
-    border: 1px solid #ccc;
-    
-   
-   
-    flex-direction: row;
-    
-   
-  }
+}
 
-  .view{
-    margin-left: -30px;
-    margin-top: -15px;
-  }
-  
+.dropdown{
+  margin-right: 25rem;
+  padding-left: 300px;
+  margin-left: -15rem;
+  margin-top: 0.5rem;
+}
 
-  .card {
-    box-sizing:content-box;
-    height: 100px;
-    overflow: hidden;
-    transition: 0.5s;
-    /*    */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  }
-  
-  .card:hover {
-    height: 400px;
-  }
-  
-  .card__top {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    color: #eee;
-    align-items: center;
-    height: 200px;
-    width: 300px;
-    background: #434343;
-    transition: 0.8s;
-  }
-  
-  .card__top > h1 {
-    font-size: 24px;
-  }
-  
-  .fas {
-    font-size: 50px;
-    text-align: center;
-  }
-  
-  .card:hover > .card__top {
-    background: #eee;
-    color: #080608;
-  }
-  
-  .card__bottom {
-    box-sizing: border-box;
-    height: 200px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    padding: 16px;
-    background: #57432e;
-  }
-  
-  .card__bottom > p {
-    color: #d3d2d2;
-    font-size: 16px;
-    line-height: 1.3em;
-  }
-  
-  .card__bottom a {
-    background: #fff;
-    color: #f107ba;
-    display: inline-block;
-    text-decoration: none;
-    padding: 8px 16px;
-    transition: 0.5s;
-  }
-  
-  .card__bottom a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-  }
+.box{
+  background-color: #83a9ebb9;
+}
 
-  .bottom{
-    text-align: left;
-    margin-left: -5px;
-  }
+.text{
+  color: rgb(148, 6, 6);
+}
 
-  .top{
-    margin-right: 35px;
-  }
+.horizontal_nav{
+  background-color: #00000021;
+}
+
+
+.cross{
+  height: 0.2rem;
+  width: 0.2rem;
   
-  
-  
-  
+}
+
+/* Custom CSS for adjusting the cross.png image */
+.custom-close-btn {
+  /* Adjust the button's position to the right of the logo */
+  position: relative;
+  left: auto;
+  right: 25px;
+  width: 2rem;
+  height: 2rem;
+}
+
+.small-cross {
+  /* Set the width and height for the smaller cross.png image */
+  width: 1rem; /* Adjust as needed */
+  height: 1rem; /* Maintain aspect ratio */
+  /* Add any other styling you desire */
+}
+
+

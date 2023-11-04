@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { StorageService } from '../storage.service';
 import { WebService } from 'src/app/web.service';
 
 @Component({
@@ -11,15 +12,38 @@ import { WebService } from 'src/app/web.service';
 export class DashboardComponent implements OnInit {
   stations: any = [];
   allStations: any;
+  allStation1: any;
+  active : any;
+  data1 : any = [];
+  activate: boolean = false;
+  data2 : any = [];
+  inactive : any;
+  viewMode: 'card' | 'table' = 'card'; // Initialize the default view mode
+
+  
   selectedFilter: string = 'all';
   listView: boolean = false;
-
-  constructor(private webService: WebService, private router: Router) { }
+  filteredStations: any[] = [];
+  @ViewChild('searchBox') searchInput!: ElementRef<HTMLInputElement>;
+  constructor(private webService: WebService, private router: Router, private storageService:StorageService) { }
 
   ngOnInit(): void {
+   
     this.getAll();
+    this.data();
   }
 
+  isSidebarActive = false;
+
+  toggleSidebar() {
+    this.isSidebarActive = !this.isSidebarActive;
+  }
+
+  closeSidebar() {
+    this.isSidebarActive = false;
+  }
+
+  
   getAll() {
 
     this.webService.stations().subscribe((data: any) => {
@@ -28,9 +52,34 @@ export class DashboardComponent implements OnInit {
       this.stations = data.stations;
       console.log(this.stations);
       this.allStations = data.stations;
+      this.allStation1 = data.stations;
+      this.data1 = data.stations;
+      console.log(this.data1)
+      this.data2 = data.stations;;
 
     });
   }
+
+  
+  data() {
+    console.log("Data1:", this.data1);
+    console.log("Data2:", this.data2);
+
+    if (this.data1 && Array.isArray(this.data1)) {
+        this.active = this.stations.filter((data: { status: string; }) => data.status === 'active');
+    } else {
+        this.active = [];
+    }
+
+    if (this.data2 && Array.isArray(this.data2)) {
+        this.inactive = this.data2.filter((data: { status: string; }) => data.status === 'inactive');
+    } else {
+        this.inactive = [];
+    }
+
+    console.log("Active:", this.active);
+    console.log("Inactive:", this.inactive);
+}
 
   setFilter(filter: string) {
     this.selectedFilter = filter;
@@ -44,6 +93,16 @@ export class DashboardComponent implements OnInit {
       this.stations = this.allStations.filter((station: { status: string; }) => station.status === this.selectedFilter);
     }
   }
+
+  filter(): void {
+    if (this.selectedFilter === 'active' || this.selectedFilter === 'inactive') {
+      this.stations = this.allStations.filter((station: { status: string; }) => station.status === this.selectedFilter);
+    } else {
+      
+    }
+  }
+  
+ 
 
   ngOnChanges() {
     this.filterStations();
@@ -132,11 +191,45 @@ export class DashboardComponent implements OnInit {
     );
   }
 
+  searchQuery: string = '';
+  shouldFilter: boolean = false;
+
+  onSearch() {
+    if (this.searchQuery) {
+      this.shouldFilter = true;
+      this.filteredStations = this.allStations.filter((station: any) =>
+        station.name.toLowerCase().includes(this.searchQuery.toLowerCase()) 
+      );
+      this.stations = this.filteredStations;
+    } else {
+      console.log("fail")
+      this.shouldFilter = false;
+      this.stations = this.allStations;
+    }
+  }
+
+  resetFilter() {
+    this.searchQuery = '';
+    this.shouldFilter = false;
+    this.stations = this.allStations;
+  }
+
+  public isLoggedIn(){
+    return this.storageService.isLoggedIn();
+  }
+
+  public logout(){
+    this.storageService.clear();
+  }
 
 
 
+   // Your existing code and logic...
 
-
+  // Function to set the view mode
+  setViewMode(mode: 'card' | 'table'): void {
+    this.viewMode = mode;
+  }
 
 
 
