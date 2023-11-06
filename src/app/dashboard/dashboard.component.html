@@ -6,56 +6,57 @@
 
 <!--vertical nav-->
 <div class="vertical-nav bg-white" [ngClass]="{'active': isSidebarActive}" id="sidebar">
-    <div class="py-4 px-3 mb-4 bg-light">
+    <div class="py-4 px-3 mb-4">
         <div class="media d-flex">
             <a href="/dashboard"><img src="assets/logo.png" alt="..." width="150" height="100" class="mb-1 mt-3" /></a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <button style="padding-left: 1rem;" type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <button class="btn btn-light  custom-close-btn" (click)="closeSidebar()">
+            <button style="padding-left: 0.5rem; padding-bottom: 2rem;" class="btn btn-light  custom-close-btn" *ngIf="isSidebarActive == true" (click)="closeSidebar()">
                 <img src="assets/cross.png" alt="..." class="small-cross" />
             </button>
         </div>
     </div>
-    <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">
+    <p class="text-white font-weight-bold text-uppercase px-3 small pb-4 mb-0">
         Dashboard
     </p>
-    <ul class="nav flex-column bg-white">
+    <ul class="nav flex-column">
         <li class="nav-item">
-            <a href="/dashboard" class="nav-link bg-light">
-                <img src="assets/home.png" alt="..." width="42" class="px-2 py-2" />
+            <a  style="padding-left: 2rem;" href="/dashboard" class="nav-link">
+                <i style="padding-right: 1rem;" class="fa fa-home"></i>
+
                 Home
             </a>
         </li>
-        <li class="nav-link bg-light" [class.active]="viewMode === 'card'" (click)="setViewMode('card')">
-            <img src="assets/card.png" alt="..." width="42" class="px-2 py-2" />
+        <li style="padding-left: 2rem;" class="nav-link " [class.active]="viewMode === 'card'" (click)="setViewMode('card')">
+            <i style="padding-right: 1rem;" class="fa-sharp fa-solid fa-credit-card"></i>
             Card View
         </li>
-        <li class="nav-link bg-light" [class.active]="viewMode === 'table'" (click)="setViewMode('table')">
-            <img src="assets/list.png" alt="..." width="42" class="px-2 py-2" />
+        <li style="padding-left: 2rem;" class="nav-link " [class.active]="viewMode === 'table'" (click)="setViewMode('table')">
+            <i style="padding-right: 1rem;" class="fa-sharp fa-solid fa-table-columns"></i>
             Table View
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link bg-light">
-                <img src="assets/solid_users.png" alt="..." width="42" class="px-2 py-2" />
+        <li  class="nav-item">
+            <a style="padding-left: 2rem;" href="/dashboard" class="nav-link ">
+                <i style="padding-right: 1rem;" class="fa-solid fa-user-group"></i>
                 View All Users
             </a>
         </li>
         <li class="nav-item">
-            <div class="nav-link bg-light" (click)="addStation()">
-                <img src="assets/user.png" alt="..." width="42" class="px-2 py-2" />
-                +Add Station
+            <div style="padding-left: 2rem;" class="nav-link" (click)="addStation()">
+                <i style="padding-right: 1rem;" class="fa-solid fa-user-plus"></i>
+                +Add User
             </div>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link bg-light">
-                <img src="assets/settings.png" alt="..." width="42" class="px-2 py-2" />
+        <li   class="nav-item">
+            <a style="padding-left: 2rem;" href="/dashboard" class="nav-link">
+                <i style="padding-right: 1rem;" class="fa-solid fa-gear"></i>
                 Settings
             </a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn()">
-            <a href="#" class="nav-link bg-light" (click)="logout()" [routerLink]="['../']">
-                <img src="assets/Logout.png" alt="..." width="38" class="px-2 py-2" />
+            <a style="padding-left: 2rem;" href="#" class="nav-link" (click)="logout()" [routerLink]="['../']">
+                <i style="padding-right: 1rem;" class="fa-solid fa-arrow-right-from-bracket"></i>
                 Logout
             </a>
         </li>
@@ -180,10 +181,10 @@
                             </div>
                         </div>
                     </div>
-                    <ng-template #tableView>
+                    <ng-template class="table" #tableView>
                         <!-- Render table view -->
-                        <div class="table-responsive" style="width: 57rem; margin-top: 3rem;">
-                            <table class="table table-dark">
+                        <div class="table-responsive table" style="width: 57rem; margin-top: 3rem;">
+                            <table class="table">
                               <thead>
                                 <tr>
                                   <th scope="col">Station Name</th>

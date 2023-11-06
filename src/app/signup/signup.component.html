@@ -54,7 +54,7 @@
                   <div class="form-outline mb-4">
                     <label>Password:</label>
                     <div class="password-input-container">
-                      <input [type]="password" formControlName="password" id="password" class="form-control"
+                      <input type="password" formControlName="password" id="password" class="form-control"
                         [(ngModel)]="password" name="password" placeholder="Enter your password"
                         [ngClass]="{ 'is-invalid': submitted && formControl['password'].errors }">
                       <div *ngIf="submitted && formControl['password'].errors" class="invalid-feedback"

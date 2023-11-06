@@ -12,7 +12,16 @@
   z-index: 2;
   /* margin-top: 5px; */
   overflow-y: auto;
+  background: #fccb90;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 } 
+
+
 
 .horizontal_nav{
   margin-left: 17rem;
@@ -40,12 +49,12 @@
 
 .nav-link{
   text-transform: capitalize;
-  color: #414141;
+  color: #f7f4f4;
   font-weight: 500;
 }
 
 .nav-link:hover{
-  color: #719b20;
+  color: #aa0e28;
 }
 
 .close-btn{
@@ -155,12 +164,12 @@
 
 .nav-link {
   text-transform: capitalize;
-  color: #414141;
+  color: #fffcfc;
   font-weight: 500;
 }
 
 .nav-link:hover {
-  color: #719b20;
+  color: #efd510;
 }
 
 .text-primary {
@@ -306,6 +315,12 @@ tbody td {
   border-bottom-width: 1px;
   border-radius: 0;
   padding-left: 0;
+}
+
+.table{
+  background: #fccb90;
+
+ 
 }
 
 
